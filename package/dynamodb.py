@@ -69,7 +69,7 @@ class DynamoDB:
         n_items = len(dictionary_list)
         if not quiet:
             print('inserting {} items'.format(n_items))
-        n_batches = int(np.ceil(n_items/n_per))
+        n_batches = math.ceil(n_items/n_per)
         batches = (dictionary_list[x*n_per:(x+1)*n_per] for x in range(n_batches))
 
         # write each batch
