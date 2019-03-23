@@ -74,9 +74,11 @@ class DynamoDB:
 
         # write each batch
         failed_to_process = list()
-        for batch in batches:
+        for i, batch in enumerate(batches):
             write_res = self.write_batch(table_name,batch)
             unprocessed = write_res['UnprocessedItems']
+            if not quiet:
+                print('\rbatch done : {}'.format((i+1)*n_per),end='')
             if table_name in unprocessed:
                 failed_to_process.extend(unprocessed[table_name])
 

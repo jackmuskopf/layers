@@ -8,7 +8,7 @@ install:
 
 .PHONY: package
 package:
-	cp -a package/* python/
+	rm -rf python && mkdir python && cp -a package/* python/
 
 .PHONY: zip
 zip:
